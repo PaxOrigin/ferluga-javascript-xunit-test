@@ -20,6 +20,8 @@ internal static class RollUpExtensionMethods
         return products.Where(p => p.price != products.Min(p => p.price));
     }
 
+    public static Product GetRandomElement(this IEnumerable<Product>? products)
+        => products.ToList()[new Random().Next(products.Count())];
 
 
 
