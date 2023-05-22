@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+
+
+}
+
+#title-text {
+    text-align: center;
+}
+
+#form-fields {
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 200px;
+
+}
+
+#user-table {
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 200px;
+
+}
