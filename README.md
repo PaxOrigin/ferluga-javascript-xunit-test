@@ -6,3 +6,4 @@ Folders for both the javascript and the unit testing module test
 - Submit button which allows users to be added to the users' table
 - Delete button which deletes users on the same row
 - Search functionality by email
+- Edit button does not work yet

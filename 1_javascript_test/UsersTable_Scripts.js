@@ -20,6 +20,7 @@ const onSubmit = () => {
     let email = document.getElementById("email-input");
     users.push(new User(name.value, secondName.value, email.value));
     updateTable();
+    clearField();
 
 }
 
@@ -28,6 +29,22 @@ const deleteUser = (index) => {
     users.splice(index, 1);
     updateTable();
 }
+
+const editUser = (index) => {
+    console.log(index);
+    let title = document.getElementById("form-fields-text");
+    title.textContent = "Edit a User";
+    let name = document.getElementById("name-input");
+    let secondName = document.getElementById("second-name-input");
+    let email = document.getElementById("email-input");
+    let userToEdit = users[index];
+    console.log(userToEdit.email);
+    name.value = userToEdit.name;
+    secondName.value = userToEdit.secondName;
+    email.value = userToEdit.email;
+
+}
+
 
 function searchTable() {
     // Declare variables
@@ -62,15 +79,33 @@ const updateTable = () => {
                 <td>${users[count].secondName}</td>
                 <td>${users[count].email}</td>
                 <td><button id="button${count}" type="button" class="btn btn-danger deleteBtn">delete</button></td>
+                <td><button id="buttonEd${count}" type="button" class="btn btn-warning editBtn">edit</button></td>
                 </tr>`
         table.innerHTML += template;
     }
 
-    btn2 = document.querySelectorAll(".deleteBtn");
+    let btn2 = document.querySelectorAll(".deleteBtn");
     for (let btnCount = 0; btnCount < btn2.length; btnCount++) {
         btn2[btnCount].addEventListener("click", (btnCount) => deleteUser(btnCount));
     }
 
+    let btn3 = document.querySelectorAll(".editBtn");
+    for (let btnCountEd = 0; btnCountEd < btn3.length; btnCountEd++) {
+        btn3[btnCountEd].addEventListener("click", (btnCountEd) => editUser(btnCountEd));
+    }
+
+
+}
+
+const clearField = () => {
+    let name = document.getElementById("name-input");
+    let secondName = document.getElementById("second-name-input");
+    let email = document.getElementById("email-input");
+    let button = document.getElementById("submit-button");
+    button.disabled = true;
+    name.value = "";
+    secondName.value = "";
+    email.value = "";
 
 }
 
@@ -111,9 +146,20 @@ const validateEmail = (input) => {
     let emailField = document.getElementById("email-input");
     let nameError = document.getElementById("email-errors");
     let emailInput = emailField.value;
+    let emails = [];
+    users.forEach(element => {
+        emails.push(element.email)
+    });
+    console.log(emails);
+
+    if (emails.includes(emailInput)) {
+        errors += "Email belongs to an existing account.";
+    }
+
     if (!emailInput.match(validEmail)) {
         errors += "Email is not valid";
     }
+
     nameError.textContent = errors;
 }
 
@@ -130,6 +176,7 @@ const enableSubmit = () => {
     }
 
 }
+
 
 
 
