@@ -55,7 +55,12 @@
     </div>
 
     <div class="user-table" id="user-table">
-        <table class="table">
+        <div class="input-group">
+            <span class="input-group-text" id="Search">Search By Email: </span>
+            <input type="text" class="form=control" id="searchText" aria-describedby="basic-addon3 basic-addon4"
+                onkeyup="searchTable()">
+        </div>
+        <table class="table" id="actualUserTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
